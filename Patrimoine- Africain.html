@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Patrimoine Africain — Histoire, Héros, Culture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-parchment:#F2E9D8;
+    --bg-parchment-2:#EAE0C9;
+    --ink:#241C15;
+    --ink-soft:#5A4E3E;
+    --indigo:#1B2A4A;
+    --indigo-2:#233860;
+    --ochre:#B8622B;
+    --ochre-deep:#8F4A1F;
+    --gold:#C9A227;
+    --forest:#35513B;
+    --line:#D8C9A8;
+    --white:#FBF7EE;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg-parchment);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;margin:0;font-weight:700;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ochre-deep);
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  /* Ticker */
+  .ticker-bar{
+    background:var(--indigo);
+    color:var(--white);
+    overflow:hidden;
+    white-space:nowrap;
+    position:relative;
+  }
+  .ticker-bar .label{
+    display:inline-block;
+    background:var(--ochre);
+    color:var(--white);
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    padding:6px 14px;
+    text-transform:uppercase;
+    position:relative;
+    z-index:2;
+  }
+  .ticker-track{
+    display:inline-block;
+    padding-left:100%;
+    animation:scroll-left 32s linear infinite;
+    font-family:'Space Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:.02em;
+    padding-top:6px;
+    padding-bottom:6px;
+  }
+  .ticker-track span{margin-right:48px;color:#E9E1CC;}
+  @keyframes scroll-left{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-100%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{animation:none;}
+  }
+
+  /* Header */
+  header.site{
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+    position:sticky;top:0;z-index:50;
+  }
+  .header-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;
+    gap:20px;
+  }
+  .logo{
+    display:flex;align-items:center;gap:12px;
+  }
+  .logo-mark{flex-shrink:0;}
+  .logo-text .name{
+    font-family:'Fraunces',serif;
+    font-weight:900;
+    font-size:22px;
+    letter-spacing:.01em;
+    line-height:1;
+    color:var(--ink);
+  }
+  .logo-text .tag{
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--ochre-deep);
+    margin-top:3px;
+  }
+  nav.main{
+    display:flex;gap:26px;
+  }
+  nav.main a{
+    font-family:'Work Sans',sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+    letter-spacing:.02em;
+    color:var(--ink);
+    padding:6px 0;
+    border-bottom:2px solid transparent;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  nav.main a:hover, nav.main a.active{
+    color:var(--ochre-deep);
+    border-color:var(--ochre);
+  }
+  .menu-btn{
+    display:none;
+    background:none;border:1px solid var(--line);border-radius:6px;
+    padding:8px 10px;font-size:18px;cursor:pointer;
+  }
+  @media (max-width:860px){
+    nav.main{display:none;}
+    .menu-btn{display:block;}
+  }
+
+  /* Hero */
+  .hero-section{
+    background:var(--indigo);
+    background-image:
+      radial-gradient(circle at 85% -10%, rgba(201,162,39,.20), transparent 45%),
+      radial-gradient(circle at 10% 110%, rgba(184,98,43,.18), transparent 45%);
+    color:var(--white);
+    padding:52px 0 60px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.6fr 1fr;
+    gap:44px;
+  }
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
+
+  .hero-main .eyebrow{color:var(--gold);}
+  .hero-main h1{
+    font-size:clamp(32px,4.2vw,52px);
+    line-height:1.05;
+    margin:14px 0 18px;
+    color:var(--white);
+  }
+  .hero-main p.dek{
+    font-size:17px;
+    line-height:1.55;
+    color:#D9D2BE;
+    max-width:52ch;
+    margin-bottom:20px;
+  }
+  .byline{
+    font-family:'Space Mono',monospace;
+    font-size:11.5px;
+    color:#B9AF95;
+    letter-spacing:.03em;
+  }
+  .hero-media{
+    margin-top:22px;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:4px;
+    aspect-ratio:16/9;
+    background:
+      linear-gradient(160deg, rgba(184,98,43,.55), rgba(53,81,59,.55)),
+      repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0 12px, transparent 12px 24px);
+    display:flex;align-items:flex-end;padding:16px;
+  }
+  .hero-media span{
+    font-family:'Space Mono',monospace;
+    font-size:11px;color:#F2E9D8;
+    background:rgba(27,42,74,.65);
+    padding:5px 10px;border-radius:3px;
+  }
+
+  .hero-list{
+    border-left:1px solid rgba(255,255,255,.18);
+    padding-left:28px;
+  }
+  .hero-list .eyebrow{color:var(--gold);margin-bottom:16px;display:block;}
+  .hero-list-item{
+    display:flex;gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid rgba(255,255,255,.12);
+  }
+  .hero-list-item:first-child{padding-top:0;}
+  .hero-list-item .num{
+    font-family:'Space Mono',monospace;
+    font-size:13px;color:var(--ochre);
+    padding-top:2px;
+  }
+  .hero-list-item h4{
+    font-size:15.5px;line-height:1.35;color:var(--white);font-weight:600;
+    font-family:'Work Sans',sans-serif;
+  }
+  .hero-list-item .meta{
+    font-family:'Space Mono',monospace;font-size:10.5px;color:#B9AF95;margin-top:6px;
+  }
+
+  /* Honeycomb signature section */
+  .map-section{
+    background:var(--bg-parchment-2);
+    padding:60px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .map-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:34px;flex-wrap:wrap;gap:12px;
+  }
+  .map-head h2{font-size:28px;}
+  .map-head p{
+    max-width:44ch;font-size:14px;color:var(--ink-soft);margin-top:8px;
+  }
+  .map-layout{
+    display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center;
+  }
+  @media (max-width:860px){ .map-layout{grid-template-columns:1fr;} }
+
+  .honeycomb{
+    display:flex;flex-wrap:wrap;gap:10px;
+    max-width:420px;
+  }
+  .hex{
+    --size:118px;
+    width:var(--size);
+    height:calc(var(--size)*.577);
+    background:var(--indigo);
+    margin:calc(var(--size)*.2885) 5px;
+    position:relative;
+    clip-path:polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;cursor:pointer;
+    transition:transform .18s ease, background .18s ease;
+    border:none;
+    font-family:'Work Sans',sans-serif;
+    color:var(--white);
+    padding:0 10px;
+  }
+  .hex:nth-child(2n){background:var(--ochre-deep);}
+  .hex:nth-child(3n){background:var(--forest);}
+  .hex span{font-size:12.5px;font-weight:600;line-height:1.25;}
+  .hex:hover, .hex.active{transform:translateY(-4px) scale(1.04);}
+  .hex.active{outline:3px solid var(--gold);outline-offset:2px;}
+  .hex:focus-visible{outline:3px solid var(--gold);outline-offset:2px;}
+
+  .fact-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:30px 32px;
+    min-height:230px;
+  }
+  .fact-card .eyebrow{margin-bottom:10px;display:block;}
+  .fact-card h3{font-size:22px;margin-bottom:12px;}
+  .fact-card p{font-size:14.5px;line-height:1.6;color:var(--ink-soft);}
+
+  /* Main grid */
+  .content-section{padding:58px 0 40px;}
+  .content-grid{
+    display:grid;grid-template-columns:2fr 1fr;gap:48px;
+  }
+  @media (max-width:860px){ .content-grid{grid-template-columns:1fr;} }
+
+  .section-title{
+    display:flex;align-items:center;gap:14px;margin-bottom:26px;
+  }
+  .section-title h2{font-size:22px;}
+  .section-title::after{
+    content:"";flex:1;height:1px;background:var(--line);
+  }
+
+  .article-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:30px;
+  }
+  @media (max-width:560px){ .article-grid{grid-template-columns:1fr;} }
+
+  .card{padding-bottom:6px;}
+  .card .thumb{
+    aspect-ratio:4/3;border-radius:3px;margin-bottom:14px;
+    background:linear-gradient(150deg,var(--indigo) 0%, var(--forest) 100%);
+    position:relative;overflow:hidden;
+  }
+  .card:nth-child(2n) .thumb{background:linear-gradient(150deg,var(--ochre-deep) 0%, var(--indigo) 100%);}
+  .card:nth-child(3n) .thumb{background:linear-gradient(150deg,var(--forest) 0%, var(--ochre) 100%);}
+  .card .thumb::after{
+    content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 10px, transparent 10px 20px);
+  }
+  .card .tag{
+    font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ochre-deep);
+  }
+  .card h3{font-size:18px;line-height:1.3;margin:8px 0 8px;}
+  .card p{font-size:13.5px;color:var(--ink-soft);line-height:1.5;}
+  .card .meta{
+    font-family:'Space Mono',monospace;font-size:10.5px;color:#8B7F68;margin-top:10px;
+  }
+
+  /* Sidebar */
+  aside.sidebar > * + *{margin-top:34px;}
+  .news-list-item{
+    display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);
+  }
+  .news-list-item:first-child{padding-top:0;}
+  .news-list-item .n{
+    font-family:'Fraunces',serif;font-weight:700;font-size:20px;color:var(--ochre);width:26px;flex-shrink:0;
+  }
+  .news-list-item h4{font-size:14px;line-height:1.35;font-weight:600;font-family:'Work Sans',sans-serif;}
+  .news-list-item .meta{font-family:'Space Mono',monospace;font-size:10px;color:#8B7F68;margin-top:5px;}
+
+  .proverb-box{
+    background:var(--indigo);color:var(--white);
+    padding:26px 24px;border-radius:4px;
+  }
+  .proverb-box .eyebrow{color:var(--gold);margin-bottom:12px;display:block;}
+  .proverb-box blockquote{
+    font-family:'Fraunces',serif;font-style:italic;font-size:19px;line-height:1.4;margin:0 0 10px;
+  }
+  .proverb-box cite{font-family:'Space Mono',monospace;font-size:11px;color:#B9AF95;font-style:normal;}
+
+  .newsletter-box{
+    border:1px solid var(--line);padding:24px;border-radius:4px;
+  }
+  .newsletter-box h4{font-size:16px;margin-bottom:8px;}
+  .newsletter-box p{font-size:13px;color:var(--ink-soft);margin-bottom:14px;line-height:1.5;}
+  .newsletter-box form{display:flex;gap:8px;}
+  .newsletter-box input{
+    flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:3px;
+    font-family:'Work Sans',sans-serif;font-size:13px;background:var(--white);
+  }
+  .newsletter-box button{
+    background:var(--ochre);color:var(--white);border:none;padding:10px 16px;
+    border-radius:3px;font-weight:600;font-size:13px;cursor:pointer;
+    font-family:'Work Sans',sans-serif;
+  }
+  .newsletter-box button:hover{background:var(--ochre-deep);}
+
+  footer{
+    background:var(--ink);color:#D9D2BE;padding:40px 0;margin-top:40px;
+  }
+  .footer-inner{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;
+    font-family:'Space Mono',monospace;font-size:11.5px;
+  }
+  footer .fname{font-family:'Fraunces',serif;font-weight:700;font-size:17px;color:var(--white);margin-bottom:6px;}
+</style>
+</head>
+<body>
+
+<div class="ticker-bar">
+  <span class="label">En continu</span>
+  <div class="ticker-track">
+    <span>Kinshasa — colloque sur la préservation des langues bantoues, ouverture lundi</span>
+    <span>Sortie prévue de l'annuaire des noms de famille congolais, édition RDC</span>
+    <span>Portrait : trois figures du royaume Kongo peu connues du grand public</span>
+    <span>Carte démographique 2026 : les provinces de la RDC par groupe ethnique</span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap header-inner">
+    <a class="logo" href="#">
+      <svg class="logo-mark" width="42" height="46" viewBox="0 0 42 46" fill="none">
+        <path d="M21 2 L39 9 V22 C39 33 31 41 21 44 C11 41 3 33 3 22 V9 Z" fill="#1B2A4A" stroke="#C9A227" stroke-width="1.4"/>
+        <path d="M21 8 C15 15 12 20 12 26 C12 33 16 37 21 39 C26 37 30 33 30 26 C30 20 27 15 21 8 Z" fill="#B8622B" opacity=".85"/>
+        <line x1="21" y1="8" x2="21" y2="39" stroke="#F2E9D8" stroke-width="1"/>
+      </svg>
+      <span class="logo-text">
+        <div class="name">Le Patrimoine Africain</div>
+        <div class="tag">Histoire · Héros · Culture</div>
+      </span>
+    </a>
+    <nav class="main">
+      <a class="active" href="#">Accueil</a>
+      <a href="#">Histoire</a>
+      <a href="#">Peuples &amp; Ethnies</a>
+      <a href="#">Patrimoine</a>
+      <a href="#">Portraits</a>
+      <a href="#carte">Carte</a>
+      <a href="#">Contact</a>
+    </nav>
+    <button class="menu-btn" aria-label="Ouvrir le menu">☰</button>
+  </div>
+</header>
+
+<section class="hero-section">
+  <div class="wrap hero-grid">
+    <div class="hero-main">
+      <span class="eyebrow">Enquête · Onomastique</span>
+      <h1>Que révèlent nos noms de famille sur nos origines ?</h1>
+      <p class="dek">Derrière chaque patronyme congolais se cache une ethnie, une région, parfois un événement fondateur. Plongée dans le grand chantier de recensement des noms de famille de la RDC.</p>
+      <div class="byline">PAR LA RÉDACTION · 11 MIN DE LECTURE</div>
+      <div class="hero-media"><span>Photo — marché de Kinshasa, archives 1958</span></div>
+    </div>
+    <div class="hero-list">
+      <span class="eyebrow">À la une</span>
+      <div class="hero-list-item">
+        <span class="num">01</span>
+        <div><h4>Le royaume Kongo, cinq siècles d'organisation politique</h4><div class="meta">HISTOIRE · 6 MIN</div></div>
+      </div>
+      <div class="hero-list-item">
+        <span class="num">02</span>
+        <div><h4>Pygmées d'Afrique centrale : gardiens des forêts primaires</h4><div class="meta">PEUPLES · 8 MIN</div></div>
+      </div>
+      <div class="hero-list-item">
+        <span class="num">03</span>
+        <div><h4>Banyamulengé : itinéraire d'une communauté entre deux rives</h4><div class="meta">MIGRATIONS · 9 MIN</div></div>
+      </div>
+      <div class="hero-list-item">
+        <span class="num">04</span>
+        <div><h4>Ce que les légendes bakongo racontent de la création du monde</h4><div class="meta">CULTURE · 5 MIN</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="map-section" id="carte">
+  <div class="wrap">
+    <div class="map-head">
+      <div>
+        <span class="eyebrow">Signature · Carte vivante</span>
+        <h2>Explorez le patrimoine, région par région</h2>
+      </div>
+      <p>Chaque alvéole ouvre une entrée du grand annuaire des peuples, langues et noms de famille africains.</p>
+    </div>
+    <div class="map-layout">
+      <div class="honeycomb" role="group" aria-label="Régions du patrimoine">
+        <button class="hex active" data-region="0"><span>Afrique Centrale</span></button>
+        <button class="hex" data-region="1"><span>Afrique de l'Ouest</span></button>
+        <button class="hex" data-region="2"><span>Afrique de l'Est</span></button>
+        <button class="hex" data-region="3"><span>Afrique Australe</span></button>
+        <button class="hex" data-region="4"><span>Afrique du Nord</span></button>
+        <button class="hex" data-region="5"><span>Diaspora</span></button>
+      </div>
+      <div class="fact-card" id="factCard">
+        <span class="eyebrow">Afrique Centrale</span>
+        <h3>RDC, Congo, Rwanda, Burundi</h3>
+        <p>Plus de 250 groupes ethniques recensés en RDC, parlant environ 215 langues. Les patronymes y encodent souvent le clan, la lignée maternelle ou paternelle, et parfois les circonstances de la naissance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="wrap content-grid">
+    <div>
+      <div class="section-title"><h2>Dernières analyses</h2></div>
+      <div class="article-grid">
+        <article class="card">
+          <div class="thumb"></div>
+          <span class="tag">Peuples &amp; Ethnies</span>
+          <h3>Les grands groupes bantous, une mosaïque en mouvement</h3>
+          <p>Des migrations bantoues aux royaumes précoloniaux, retour sur trois millénaires de déplacements.</p>
+          <div class="meta">7 MIN · HISTOIRE</div>
+        </article>
+        <article class="card">
+          <div class="thumb"></div>
+          <span class="tag">Portraits</span>
+          <h3>Nimi Lukeni, entre légende fondatrice et débat historique</h3>
+          <p>De quelle ethnie serait-il issu, et où reposerait-il ? Les historiens ne s'accordent toujours pas.</p>
+          <div class="meta">6 MIN · PORTRAITS</div>
+        </article>
+        <article class="card">
+          <div class="thumb"></div>
+          <span class="tag">Patrimoine</span>
+          <h3>Soudanais et Nilotiques : les peuples de la savane</h3>
+          <p>Panorama des populations du nord-est de la RDC et de leurs systèmes de parenté.</p>
+          <div class="meta">5 MIN · PATRIMOINE</div>
+        </article>
+        <article class="card">
+          <div class="thumb"></div>
+          <span class="tag">Culture</span>
+          <h3>Ce que disent les noms : enquête sur les patronymes courants</h3>
+          <p>Fréquence, répartition géographique et signification des noms de famille les plus portés en RDC.</p>
+          <div class="meta">10 MIN · CULTURE</div>
+        </article>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div>
+        <div class="section-title"><h2>Dernières actualités</h2></div>
+        <div class="news-list-item">
+          <span class="n">1</span>
+          <div><h4>Colloque sur les langues bantoues à Kinshasa</h4><div class="meta">IL Y A 5 HEURES</div></div>
+        </div>
+        <div class="news-list-item">
+          <span class="n">2</span>
+          <div><h4>Nouvelle carte démographique des provinces de la RDC</h4><div class="meta">IL Y A 11 HEURES</div></div>
+        </div>
+        <div class="news-list-item">
+          <span class="n">3</span>
+          <div><h4>Struyf et les légendes bakongo, un texte de 1936 réédité</h4><div class="meta">HIER</div></div>
+        </div>
+        <div class="news-list-item">
+          <span class="n">4</span>
+          <div><h4>Le séparatisme katangais relu à la lumière d'archives inédites</h4><div class="meta">IL Y A 2 JOURS</div></div>
+        </div>
+        <div class="news-list-item">
+          <span class="n">5</span>
+          <div><h4>Kagame et l'ethno-histoire du Rwanda, ce qu'il faut retenir</h4><div class="meta">IL Y A 3 JOURS</div></div>
+        </div>
+      </div>
+
+      <div class="proverb-box">
+        <span class="eyebrow">Sagesse du jour</span>
+        <blockquote>« Le nom que l'on porte est un fleuve : il vient de loin et continue après nous. »</blockquote>
+        <cite>PROVERBE D'AFRIQUE CENTRALE</cite>
+      </div>
+
+      <div class="newsletter-box">
+        <h4>Recevoir l'essentiel chaque semaine</h4>
+        <p>Une sélection d'articles sur l'histoire, les peuples et le patrimoine africain, chaque vendredi.</p>
+        <form onsubmit="return false;">
+          <input type="email" placeholder="Votre email" aria-label="Adresse email">
+          <button type="submit">S'inscrire</button>
+        </form>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>
+      <div class="fname">Le Patrimoine Africain</div>
+      <div>Histoire · Héros · Culture — © 2026</div>
+    </div>
+    <div>ACCUEIL · HISTOIRE · PEUPLES &amp; ETHNIES · PATRIMOINE · PORTRAITS · CARTE · CONTACT</div>
+  </div>
+</footer>
+
+<script>
+  const facts = [
+    {region:"Afrique Centrale", title:"RDC, Congo, Rwanda, Burundi", text:"Plus de 250 groupes ethniques recensés en RDC, parlant environ 215 langues. Les patronymes y encodent souvent le clan, la lignée maternelle ou paternelle, et parfois les circonstances de la naissance."},
+    {region:"Afrique de l'Ouest", title:"Du Sénégal au Nigeria", text:"Berceau des empires du Ghana, du Mali et Songhaï. Les noms de famille y suivent souvent des systèmes de clans (Sanankuya) hérités des grandes fédérations mandingues."},
+    {region:"Afrique de l'Est", title:"De l'Éthiopie au Kenya", text:"Terre des systèmes de classes d'âge et des royaumes des Grands Lacs. Les noms portent fréquemment la trace du bétail, des saisons ou des circonstances de naissance."},
+    {region:"Afrique Australe", title:"Du Zimbabwe à l'Afrique du Sud", text:"Les traditions zouloue, xhosa et shona attachent une signification morale ou narrative à chaque nom, souvent choisi comme message adressé à la famille élargie."},
+    {region:"Afrique du Nord", title:"Du Maroc à l'Égypte", text:"Zone de rencontre entre héritages berbères, arabes et subsahariens, où la généalogie tribale (nasab) structure encore une large part de l'identité patronymique."},
+    {region:"Diaspora", title:"Amériques, Europe, Caraïbes", text:"Des millions de descendants recomposent aujourd'hui leurs origines à partir de fragments de noms, de récits familiaux et de bases de données généalogiques."}
+  ];
+  const hexes = document.querySelectorAll('.hex');
+  const card = document.getElementById('factCard');
+  hexes.forEach(hex=>{
+    hex.addEventListener('click', ()=>{
+      hexes.forEach(h=>h.classList.remove('active'));
+      hex.classList.add('active');
+      const f = facts[hex.dataset.region];
+      card.innerHTML = `<span class="eyebrow">${f.region}</span><h3>${f.title}</h3><p>${f.text}</p>`;
+    });
+  });
+</script>
+
+</body>
+</html>
